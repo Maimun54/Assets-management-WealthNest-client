@@ -7,6 +7,7 @@ import { Children } from "react";
 import Home from "../Pages/Home/Home/Home";
 import JoinEmployee from "../Pages/EmployeePage/JoinEmployee";
 import Login from "../Pages/Login/Login";
+import JoinAdmin from "../Pages/JoinAdmin/JoinAdmin";
  
   
   const router = createBrowserRouter([
@@ -25,7 +26,11 @@ import Login from "../Pages/Login/Login";
         {
             path:'/login',
             element:<Login></Login>
-        }
+        },
+        {
+            path:'/joinAdmin',
+            element:<JoinAdmin></JoinAdmin>
+        },
       ]
     },
    

@@ -50,7 +50,7 @@ const Navbar = () => {
         {navLinks}
       </ul>
     </div>
-    <a className="btn btn-ghost normal-case text-xl">Asset Management
+    <a className="btn btn-ghost normal-case text-xl">WealthNest
 </a>
   </div>
   <div className="navbar-center hidden lg:flex">

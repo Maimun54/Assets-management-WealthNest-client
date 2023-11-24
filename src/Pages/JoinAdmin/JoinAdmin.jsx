@@ -1,13 +1,12 @@
+import SocialLogin from "../../Components/SocialLogin";
 
 import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider";
-import SocialLogin from "../../Components/SocialLogin";
 import { Link } from "react-router-dom";
 
-
-const JoinEmployee = () => {
+const JoinAdmin = () => {
     const {createUser}=useContext(AuthContext)
 
     const {
@@ -20,6 +19,7 @@ const JoinEmployee = () => {
         }
     return (
         <div>
+            <div>
            <div>
             <Helmet>
         <title>Join As Employee</title>
@@ -32,10 +32,24 @@ const JoinEmployee = () => {
       <form onSubmit={handleSubmit(onSubmit)}  className="card-body">
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Name</span>
+            <span className="label-text">Full Name</span>
           </label>
           <input type="text" {...register("name",{required:true})} name="name" placeholder="name" className="input input-bordered"  />
           {errors.name && <span className="text-red-600">This field is required</span>}
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Company Name</span>
+          </label>
+          <input type="text" {...register("Company-name",{required:true})} name="Company-name" placeholder="Company Name" className="input input-bordered"  />
+          {errors.name && <span className="text-red-600">This field is required</span>}
+        </div>
+        <div className="form-control">
+          <label className="label">
+         <span className="label-text">Company logo</span>
+          </label>
+          <input type="text" {...register("photo",{required:true})}  placeholder="Logo  url" className="input input-bordered"  />
+          {errors.photo && <span className="text-red-600">Tomar Picture dow mama</span>}
         </div>
         <div className="form-control">
           <label className="label">
@@ -44,6 +58,18 @@ const JoinEmployee = () => {
           <input type="date" {...register("Birthday",{required:true})}  placeholder="Birthday" className="input input-bordered"  />
           {errors.Birthday && <span className="text-red-600">Select your Date of birth</span>}
         </div>
+        <div className="form-control w-full ">
+  <label className="label">
+    <span className="label-text">Category</span>
+    
+  </label>
+  <select {...register('category',{required:true})} className="select select-bordered w-full ">
+  <option disabled selected>Select your package </option>
+  <option value="5 Members for $5">5 Members for $5</option>
+  <option value="10 Members for $8">10 Members for $8</option>
+  <option value="20 Members for $15">20 Members for $15</option>
+  </select>
+</div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
@@ -72,15 +98,16 @@ const JoinEmployee = () => {
         </div>
       </form>
       <div className="p-5">
-        <h2 className="text-center">Already Joined as a Employee <span className="font-bold"><Link to='/login'>Login</Link></span></h2>
+        <h2 className="text-center">Already Joined as a Admin <span className="font-bold"><Link to='/login'>Login</Link></span></h2>
         <SocialLogin></SocialLogin>
       </div>
     </div>
   </div>
 </div>  
         </div> 
+        </div> 
         </div>
     );
 };
 
-export default JoinEmployee;
+export default JoinAdmin;
