@@ -2,37 +2,69 @@
 
 
 // import { useContext } from "react";
-import {  NavLink } from "react-router-dom";
+import {  Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import useAuth from "../../../hooks/useAuth";
 // import { AuthContext } from "../../Provider/AuthProvide";
 
 
 
 const Navbar = () => {
-//   const {user,loginOut}=useContext(AuthContext)
-//   const handleLogOut=()=>{
-//     loginOut()
-//     .then()
-//     .catch()
-//   }
+  const {user,loginOut}=useAuth()
+  const handleLogOut=()=>{
+    loginOut()
+    .then()
+    .catch()
+  }
     const navLinks =<>
          <li><NavLink to="/">Home</NavLink></li>
          
-         <li><NavLink to="/joinEmployee">Join as Employee</NavLink></li>
-         <li><NavLink to="/joinAdmin">Join as Admin</NavLink></li>
-         
-         <li><NavLink to="/login">Login</NavLink></li>
-         
-        {/* {
+        {
         user?.email?<>
-         <li ><button  onClick={handleLogOut}>Sign Out</button>
-        
-        </li>
-        
+         <li><NavLink to="/myAssets">My Assets</NavLink></li>
         </>
         :
-       <li> <Link to='/login'>Login</Link></li>
+        <li><NavLink to="/joinEmployee">Join as Employee</NavLink></li>
+        }
+        {
+        user?.email?<>
+         <li><NavLink to="/myTeam">My Team</NavLink></li>
+        </>
+        :
+        <li><NavLink to="/joinAdmin">Join as Admin</NavLink></li>
+        }
+        {
+        user?.email?<>
+         <li ><button  onClick={handleLogOut}>Sign Out</button>
+        </li>
+        </>
+        :
+       <li><NavLink to="/login">Login</NavLink></li>
+        }
+        {
+        user?.email?<>
+        <li><NavLink to="/requestAssets">Request for an Assets</NavLink></li>
+        </>
+        :
+         ""
+        }
+        {
+        user?.email?<>
+       <li><NavLink to="/customRequest">Make a Custom Request</NavLink></li>
+        </>
+        :
+         ""
+        }
+        {
+        user?.email?<>
+       <li><NavLink to="/profile">Profile</NavLink></li>
+        </>
+        :
+         ""
+        }
         
-            } */}
+        
+        
     </>
 
   

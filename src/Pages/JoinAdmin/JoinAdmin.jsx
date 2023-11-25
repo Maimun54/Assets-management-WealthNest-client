@@ -99,7 +99,7 @@ const JoinAdmin = () => {
       </form>
       <div className="p-5">
         <h2 className="text-center">Already Joined as a Admin <span className="font-bold"><Link to='/login'>Login</Link></span></h2>
-        <SocialLogin></SocialLogin>
+        {/* <SocialLogin></SocialLogin> */}
       </div>
     </div>
   </div>
