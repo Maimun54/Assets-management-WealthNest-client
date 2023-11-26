@@ -1,7 +1,7 @@
 
 
-const Profile = () => {
-    
+
+const Admin_Home = () => {
     return (
         <div>
             
@@ -9,4 +9,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default Admin_Home;

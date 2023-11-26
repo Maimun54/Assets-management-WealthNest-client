@@ -1,22 +1,52 @@
-import SocialLogin from "../../Components/SocialLogin";
+
 
 import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const JoinAdmin = () => {
-    const {createUser}=useContext(AuthContext)
-
+    const {createUser,updateUserProfile}=useContext(AuthContext)
+    const axiosPublic =useAxiosPublic()
     const {
         register,handleSubmit,reset,formState: { errors },} = useForm()
-
+        const role ='admin'
+        const navigate =useNavigate()
         const onSubmit= data => {
-            console.log(data)
-            createUser(data.email,data.password)
-            reset()
-        }
+          console.log(data)
+          createUser(data.email,data.password)
+          .then(res=>{
+              console.log(res.user)
+              updateUserProfile(data.name,data.photoURL)
+              .then(()=>{
+                 //create user entry in the database
+                 const userInfo ={
+                  name:data.name,
+                  email:data.email,
+                  photo:data.photo,
+                  Birthday:data.Birthday,
+                  Company_name:data.Company_name,
+                  category:data.category,
+                  
+                  role:role
+                 }
+                 axiosPublic.post('/users',userInfo,role)
+                 .then(res=>{
+                  if(res.data.insertedId){
+                    console.log('user added a database')
+                    reset();
+                      navigate('/')
+                  }
+                 })
+                  // console.log('user profile updated')
+                  
+                    
+              })
+              .catch(error=>console.log(error))
+          })
+      }
     return (
         <div>
             <div>
@@ -41,7 +71,7 @@ const JoinAdmin = () => {
           <label className="label">
             <span className="label-text">Company Name</span>
           </label>
-          <input type="text" {...register("Company-name",{required:true})} name="Company-name" placeholder="Company Name" className="input input-bordered"  />
+          <input type="text" {...register("Company_name",{required:true})} name="Company_name" placeholder="Company Name" className="input input-bordered"  />
           {errors.name && <span className="text-red-600">This field is required</span>}
         </div>
         <div className="form-control">

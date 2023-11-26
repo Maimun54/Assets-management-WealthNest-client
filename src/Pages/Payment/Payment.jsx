@@ -1,7 +1,6 @@
 
 
-const Profile = () => {
-    
+const Payment = () => {
     return (
         <div>
             
@@ -9,4 +8,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default Payment;

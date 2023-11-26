@@ -1,23 +1,52 @@
 
-import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../../Provider/AuthProvider";
+
 import SocialLogin from "../../Components/SocialLogin";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAuth from "../../hooks/useAuth";
 
 
-const JoinEmployee = () => {
-    const {createUser}=useContext(AuthContext)
-
+    const JoinEmployee = () => {
+      const axiosPublic =useAxiosPublic()
+     
+    const {createUser,updateUserProfile}=useAuth()
+    const role ='employee'
     const {
         register,handleSubmit,reset,formState: { errors },} = useForm()
-
+        const navigate =useNavigate()
+        
         const onSubmit= data => {
-            console.log(data)
-            createUser(data.email,data.password)
-            reset()
-        }
+          console.log(data)
+          createUser(data.email,data.password)
+          .then(res=>{
+              console.log(res.user)
+              updateUserProfile(data.name,data.photoURL)
+              .then(()=>{
+                 //create user entry in the database
+                 const userInfo ={
+                  name:data.name,
+                  email:data.email,
+                  photo:data.photo,
+                  Birthday:data.Birthday,
+                  role:role
+                 }
+                 axiosPublic.post('/users',userInfo,role)
+                 .then(res=>{
+                  if(res.data.insertedId){
+                    console.log('user added a database')
+                    reset();
+                      navigate('/')
+                  }
+                 })
+                  // console.log('user profile updated')
+                  
+                    
+              })
+              .catch(error=>console.log(error))
+          })
+      }
     return (
         <div>
            <div>
@@ -36,6 +65,13 @@ const JoinEmployee = () => {
           </label>
           <input type="text" {...register("name",{required:true})} name="name" placeholder="name" className="input input-bordered"  />
           {errors.name && <span className="text-red-600">This field is required</span>}
+        </div>
+        <div className="form-control">
+          <label className="label">
+         <span className="label-text">Profile</span>
+          </label>
+          <input type="text" {...register("photo",{required:true})}  placeholder="photo  url" className="input input-bordered"  />
+          {errors.photo && <span className="text-red-600">Tomar Picture dow mama</span>}
         </div>
         <div className="form-control">
           <label className="label">

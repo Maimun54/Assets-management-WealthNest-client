@@ -1,69 +1,64 @@
 
-
-
 // import { useContext } from "react";
-import {  Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../../../Provider/AuthProvider";
+import {NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import { useEffect, useState } from "react";
+
+import axios from "axios";
 // import { AuthContext } from "../../Provider/AuthProvide";
-
-
 
 const Navbar = () => {
   const {user,loginOut}=useAuth()
+    const [userData,setUserData]=useState([])
+    console.log(userData)
+  useEffect(()=>{
+       axios.get(`http://localhost:5000/user/${user?.email}`)
+       .then(res=>{
+        
+        setUserData(res.data)
+       })
+    
+  },[user?.email])
+  
   const handleLogOut=()=>{
     loginOut()
     .then()
     .catch()
   }
     const navLinks =<>
-         <li><NavLink to="/">Home</NavLink></li>
-         
         {
-        user?.email?<>
-         <li><NavLink to="/myAssets">My Assets</NavLink></li>
-        </>
-        :
-        <li><NavLink to="/joinEmployee">Join as Employee</NavLink></li>
-        }
-        {
-        user?.email?<>
-         <li><NavLink to="/myTeam">My Team</NavLink></li>
-        </>
-        :
-        <li><NavLink to="/joinAdmin">Join as Admin</NavLink></li>
-        }
-        {
-        user?.email?<>
-         <li ><button  onClick={handleLogOut}>Sign Out</button>
-        </li>
-        </>
-        :
-       <li><NavLink to="/login">Login</NavLink></li>
-        }
-        {
-        user?.email?<>
-        <li><NavLink to="/requestAssets">Request for an Assets</NavLink></li>
-        </>
-        :
-         ""
-        }
-        {
-        user?.email?<>
-       <li><NavLink to="/customRequest">Make a Custom Request</NavLink></li>
-        </>
-        :
-         ""
-        }
-        {
-        user?.email?<>
-       <li><NavLink to="/profile">Profile</NavLink></li>
-        </>
-        :
-         ""
-        }
-        
-        
+  userData[0]?.role === 'employee' ? (
+    // Employee routes go here
+    <>
+      <li><NavLink to="/">Home</NavLink></li> 
+      <li><NavLink to="/myAssets">My Assets</NavLink></li>
+      <li><NavLink to="/myTeam">My Team</NavLink></li>
+      <li><NavLink to="/customRequest">Make a Custom Request</NavLink></li>
+      <li><NavLink to="/requestAssets">Request for an Assets</NavLink></li>
+      <li><NavLink to="/profile">Profile</NavLink></li>
+      <li><button onClick={handleLogOut}>Sign Out</button></li>
+    </>
+  ) : userData[0]?.role === 'admin' ? (
+    // Admin routes go here
+    <>
+      <li><NavLink to="/">Home</NavLink></li> 
+      <li><NavLink to="/addEmployee">Add an Employee</NavLink></li>
+      <li><NavLink to="/addAssets">Add Assets</NavLink></li>
+      <li><NavLink to="/allRequests">All Requests</NavLink></li>
+      <li><NavLink to="/assetList">AssetList</NavLink></li>
+      <li><NavLink to="/adminProfile">Profile</NavLink></li>
+      <li><button onClick={handleLogOut}>Sign Out</button></li>
+    </>
+  ) : (
+    // Default routes or error handling go here
+    <>
+      <li><NavLink to="/">Home</NavLink></li>
+      <li><NavLink to="/joinEmployee">Join as Employee</NavLink></li>
+      <li><NavLink to="/joinAdmin">Join as Admin</NavLink></li>
+      <li><NavLink to="/login">Login</NavLink></li>
+    </>
+  )
+}
         
     </>
 

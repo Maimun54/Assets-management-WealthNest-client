@@ -1,7 +1,5 @@
 
-
-const Profile = () => {
-    
+const Add_Assets = () => {
     return (
         <div>
             
@@ -9,4 +7,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default Add_Assets;
