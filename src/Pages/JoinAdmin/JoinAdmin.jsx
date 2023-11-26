@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../Components/SocialLogin";
 
 const JoinAdmin = () => {
     const {createUser,updateUserProfile}=useContext(AuthContext)
@@ -130,6 +131,9 @@ const JoinAdmin = () => {
       <div className="p-5">
         <h2 className="text-center">Already Joined as a Admin <span className="font-bold"><Link to='/login'>Login</Link></span></h2>
         {/* <SocialLogin></SocialLogin> */}
+      </div>
+      <div>
+        <SocialLogin></SocialLogin>
       </div>
     </div>
   </div>

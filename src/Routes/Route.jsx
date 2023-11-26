@@ -65,7 +65,7 @@ import All_Requests from "../Pages/AdminPages/All_Requests";
         },
         //admin route
         {
-            path:'/addAnEmployee',
+            path:'/addEmployee',
             element:<Add_AnEmployee></Add_AnEmployee>
         },
         {
@@ -77,7 +77,7 @@ import All_Requests from "../Pages/AdminPages/All_Requests";
             element:<AdminProfile></AdminProfile>
         },
         {
-            path:'/assetsList',
+            path:'/assetList',
             element:<AssetList></AssetList>
         },
         {

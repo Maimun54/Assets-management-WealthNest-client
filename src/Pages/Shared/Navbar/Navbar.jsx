@@ -43,9 +43,9 @@ const Navbar = () => {
     <>
       <li><NavLink to="/">Home</NavLink></li> 
       <li><NavLink to="/addEmployee">Add an Employee</NavLink></li>
-      <li><NavLink to="/addAssets">Add Assets</NavLink></li>
+      <li><NavLink to="/addAssets">Add an Assets</NavLink></li>
       <li><NavLink to="/allRequests">All Requests</NavLink></li>
-      <li><NavLink to="/assetList">AssetList</NavLink></li>
+      <li><NavLink to="/assetList">Asset List</NavLink></li>
       <li><NavLink to="/adminProfile">Profile</NavLink></li>
       <li><button onClick={handleLogOut}>Sign Out</button></li>
     </>
