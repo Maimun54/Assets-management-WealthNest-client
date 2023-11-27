@@ -42,10 +42,13 @@ const Navbar = () => {
     // Admin routes go here
     <>
       <li><NavLink to="/">Home</NavLink></li> 
+      <li><NavLink to="/myEmployeeList">My Employee List</NavLink></li>
       <li><NavLink to="/addEmployee">Add an Employee</NavLink></li>
       <li><NavLink to="/addAssets">Add an Assets</NavLink></li>
-      <li><NavLink to="/allRequests">All Requests</NavLink></li>
       <li><NavLink to="/assetList">Asset List</NavLink></li>
+      <li><NavLink to="/allRequests">All Requests</NavLink></li>
+      <li><NavLink to="/customRequestList">Custom Request List</NavLink></li>
+      
       <li><NavLink to="/adminProfile">Profile</NavLink></li>
       <li><button onClick={handleLogOut}>Sign Out</button></li>
     </>

@@ -3,16 +3,18 @@ import { useNavigate } from "react-router-dom";
 
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
 
 
 const CustomRequest = () => {
     const axiosPublic =useAxiosPublic()
-     
+     const {user}=useAuth()
    
     const {
         register,handleSubmit,reset,formState: { errors },} = useForm()
         const navigate =useNavigate()
-        
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().split('T')[0];
         const onSubmit= data => {
           console.log(data)
           const customRequest ={
@@ -21,8 +23,12 @@ const CustomRequest = () => {
             Price:data.Price,
             category:data.category,
             whyNeed:data.whyNeed,
-            Additional_information:data.Additional_information
-           
+            Additional_information:data.Additional_information,
+            email:user?.email,
+            name:user?.displayName,
+            DateAdded: formattedDate,
+            status:'pending'
+            
            }
            axiosPublic.post('/ECustomRequest',customRequest)
            .then(res=>{

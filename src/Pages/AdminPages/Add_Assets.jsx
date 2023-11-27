@@ -10,20 +10,23 @@ const Add_Assets = () => {
     const {
         register,handleSubmit,reset,formState: { errors },} = useForm()
         const navigate =useNavigate()
-        
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().split('T')[0];
         const onSubmit= data => {
           console.log(data)
           const customRequest ={
             Product_Name:data.Product_Name, 
             Product_Type:data.Product_Type,
-            Product_Quantity:data.Product_Quantity
+            Product_Quantity:data.Product_Quantity,
+            DateAdded: formattedDate
+
            }
            axiosPublic.post('/adminAddAssets',customRequest)
            .then(res=>{
             if(res.data.insertedId){
               console.log('adminAddAssets added a database')
               reset();
-                navigate('/')
+              navigate('/')
             }
            })
          

@@ -20,6 +20,8 @@ import Custom_RequestsList from "../Pages/AdminPages/Custom_RequestsList";
 import MyEmployeeList from "../Pages/AdminPages/MyEmployeeList";
 import AdminProfile from "../Pages/AdminPages/AdminProfile";
 import All_Requests from "../Pages/AdminPages/All_Requests";
+import PrivateRoute from "./PrivateRoute";
+import Update_Add_Assets from "../Pages/AdminPages/Update/Update_Add_Assets";
  
   
   const router = createBrowserRouter([
@@ -66,32 +68,37 @@ import All_Requests from "../Pages/AdminPages/All_Requests";
         //admin route
         {
             path:'/addEmployee',
-            element:<Add_AnEmployee></Add_AnEmployee>
+            element:<PrivateRoute><Add_AnEmployee></Add_AnEmployee></PrivateRoute>
         },
         {
             path:'/addAssets',
-            element:<Add_Assets></Add_Assets>
+            element:<PrivateRoute><Add_Assets></Add_Assets></PrivateRoute>
         },
         {
             path:'/adminProfile',
-            element:<AdminProfile></AdminProfile>
+            element:<PrivateRoute><AdminProfile></AdminProfile></PrivateRoute>
         },
         {
             path:'/assetList',
-            element:<AssetList></AssetList>
+            element:<PrivateRoute><AssetList></AssetList></PrivateRoute>
+        },
+        {
+            path:'updateAsset/:id',
+            element:<PrivateRoute><Update_Add_Assets></Update_Add_Assets></PrivateRoute>,
+            loader:({params})=>fetch(`http://localhost:5000/adminAddAssets/${params.id}`)
         },
         {
             path:'/allRequests',
-            element:<All_Requests></All_Requests>
+            element:<PrivateRoute><All_Requests></All_Requests></PrivateRoute>
         },
         
         {
             path:'/customRequestList',
-            element:<Custom_RequestsList></Custom_RequestsList>
+            element:<PrivateRoute><Custom_RequestsList></Custom_RequestsList></PrivateRoute>
         },
         {
             path:'/myEmployeeList',
-            element:<MyEmployeeList></MyEmployeeList>
+            element:<PrivateRoute><MyEmployeeList></MyEmployeeList></PrivateRoute>
         },
         
       ]
