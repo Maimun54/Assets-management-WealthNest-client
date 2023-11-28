@@ -49,7 +49,7 @@ const Navbar = () => {
       <li><NavLink to="/allRequests">All Requests</NavLink></li>
       <li><NavLink to="/customRequestList">Custom Request List</NavLink></li>
       
-      <li><NavLink to="/adminProfile">Profile</NavLink></li>
+      <li><NavLink to="/Profile">Profile</NavLink></li>
       <li><button onClick={handleLogOut}>Sign Out</button></li>
     </>
   ) : (

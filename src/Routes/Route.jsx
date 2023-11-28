@@ -22,6 +22,7 @@ import AdminProfile from "../Pages/AdminPages/AdminProfile";
 import All_Requests from "../Pages/AdminPages/All_Requests";
 import PrivateRoute from "./PrivateRoute";
 import Update_Add_Assets from "../Pages/AdminPages/Update/Update_Add_Assets";
+import Update_profile from "../Pages/NormalEmployee/Update_profile";
  
   
   const router = createBrowserRouter([
@@ -63,7 +64,7 @@ import Update_Add_Assets from "../Pages/AdminPages/Update/Update_Add_Assets";
         },
         {
             path:'/profile',
-            element:<Profile></Profile>
+            element:<PrivateRoute><Profile></Profile></PrivateRoute>
         },
         //admin route
         {
@@ -86,6 +87,11 @@ import Update_Add_Assets from "../Pages/AdminPages/Update/Update_Add_Assets";
             path:'updateAsset/:id',
             element:<PrivateRoute><Update_Add_Assets></Update_Add_Assets></PrivateRoute>,
             loader:({params})=>fetch(`http://localhost:5000/adminAddAssets/${params.id}`)
+        },
+        {
+            path:'updateProfile/:id',
+            element:<PrivateRoute><Update_profile></Update_profile></PrivateRoute>,
+            loader:({params})=>fetch(`http://localhost:5000/users/${params.id}`)
         },
         {
             path:'/allRequests',
