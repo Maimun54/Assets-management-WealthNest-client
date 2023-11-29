@@ -13,6 +13,7 @@ import useAuth from "../../hooks/useAuth";
      
     const {createUser,updateUserProfile}=useAuth()
     const role ='employee'
+   
     const {
         register,handleSubmit,reset,formState: { errors },} = useForm()
         const navigate =useNavigate()
@@ -30,7 +31,8 @@ import useAuth from "../../hooks/useAuth";
                   email:data.email,
                   photo:data.photo,
                   Birthday:data.Birthday,
-                  role:role
+                  role:role,
+                  haveEmployed:null
                  }
                  axiosPublic.post('/users',userInfo,role)
                  .then(res=>{

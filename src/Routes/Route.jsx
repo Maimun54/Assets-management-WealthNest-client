@@ -104,7 +104,8 @@ import Update_profile from "../Pages/NormalEmployee/Update_profile";
         },
         {
             path:'/myEmployeeList',
-            element:<PrivateRoute><MyEmployeeList></MyEmployeeList></PrivateRoute>
+            element:<PrivateRoute><MyEmployeeList></MyEmployeeList></PrivateRoute>,
+            // loader:({params})=>fetch(`http://localhost:5000/admin/users/list/${params.email}`)
         },
         
       ]
