@@ -32,6 +32,7 @@ const JoinAdmin = () => {
                   name:data.name,
                   email:data.email,
                   photo:data.photo,
+                  companyLogo:data.companyLogo,
                   Birthday:data.Birthday,
                   Company_name:data.Company_name,
                   // category:data.category,
@@ -83,10 +84,17 @@ const JoinAdmin = () => {
         </div>
         <div className="form-control">
           <label className="label">
-         <span className="label-text">Company logo</span>
+         <span className="label-text">Profile</span>
           </label>
-          <input type="text" {...register("photo",{required:true})}  placeholder="Logo  url" className="input input-bordered"  />
+          <input type="text" {...register("photo",{required:true})}  placeholder="Profile  url" className="input input-bordered"  />
           {errors.photo && <span className="text-red-600">Tomar Picture dow mama</span>}
+        </div>
+        <div className="form-control">
+          <label className="label">
+         <span className="label-text">Company Logo</span>
+          </label>
+          <input type="text" {...register("companyLogo",{required:true})}  placeholder="Logo  url" className="input input-bordered"  />
+          {errors.companyLogo && <span className="text-red-600">Tomar Picture dow mama</span>}
         </div>
         <div className="form-control">
           <label className="label">
