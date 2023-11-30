@@ -1,5 +1,4 @@
 
-
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import Footer from "../../Shared/Footer/Footer";
@@ -8,6 +7,9 @@ import Banner from "../Banner/Banner";
 import Packages from "../Packages/Packages";
 
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import AllpendingRequest from "./AllpendingRequest";
+import AdminHome from "./AdminHome";
+
 
 
 const Home = () => {
@@ -31,11 +33,14 @@ const Home = () => {
     // Employee routes go here
     <>
       <h2>This employee home page</h2>
+      <AllpendingRequest></AllpendingRequest>
+     
     </>
   ) : userData?.role === 'admin' ? (
     // Admin routes go here
     <>
       <h2>this Admin home page</h2>
+      <AdminHome></AdminHome>
     </>
   ) : (
     // Default routes or error handling go here

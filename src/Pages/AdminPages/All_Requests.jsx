@@ -114,25 +114,3 @@ const All_Requests = () => {
 };
 
 export default All_Requests;
-
-
-
-// const handleDelete = (id) => {
-//   console.log(id);
-
-//   axiosPublic.delete(`/ECustomRequests/${id}`, {
-//     method: "DELETE",
-//     headers: {
-//       'Content-Type': 'application/json', 
-//     },
-//   })
-//   .then(response => {
-//     console.log('Deleted successfully:', response);
-//     const remaining =customData.filter(item=>item._id !==id)
-//     setCustomData(remaining)
-
-//   })
-//   .catch(error => {
-//     console.error(error);
-//   });
-// };

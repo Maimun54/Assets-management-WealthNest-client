@@ -18,7 +18,7 @@ const Payment = () => {
   console.log(user?.email);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${user?.email}`)
+    fetch(`https://asset-management-server-sigma.vercel.app/user/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setPaymentEmail(data));
   }, [user?.email]);

@@ -25,7 +25,7 @@ const Update_profile = () => {
 
            }
            console.log('update data user',updateProfile)
-           fetch(`http://localhost:5000/users/${userInfo?._id}`,{
+           fetch(`https://asset-management-server-sigma.vercel.app/users/${userInfo?._id}`,{
             method:'PUT',
             headers:{
                 'Content-type':'application/json'

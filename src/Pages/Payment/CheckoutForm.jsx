@@ -6,6 +6,7 @@ import { ImSpinner9 } from "react-icons/im";
 // import "./CheckoutForm.css"
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
   const CheckoutForm = ({ packageInfo, handleClose }) => {
     console.log(packageInfo);
     const axiosPublic =useAxiosPublic()
@@ -16,7 +17,7 @@ import useAuth from "../../hooks/useAuth";
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProcessing] = useState(false);
-  
+  const navigate =useNavigate()
 
   // Create Payment Intent
    console.log(packageInfo)
@@ -81,7 +82,7 @@ import useAuth from "../../hooks/useAuth";
       axiosPublic
         .patch(`/admin/extend-employee-limit/${user.email}`, { limit })
         .then((res) => console.log(res.data));
-
+          navigate('/')
       setProcessing(false);
     }
   };

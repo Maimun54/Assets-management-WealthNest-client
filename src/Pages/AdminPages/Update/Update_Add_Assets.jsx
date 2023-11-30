@@ -23,7 +23,7 @@ const Update_Add_Assets = () => {
             DateAdded: formattedDate
 
            }
-           fetch(`http://localhost:5000/adminAddAssets/${updateAssets._id}`,{
+           fetch(`https://asset-management-server-sigma.vercel.app/adminAddAssets/${updateAssets._id}`,{
             method:'PUT',
             headers:{
                 'Content-type':'application/json'

@@ -24,13 +24,17 @@ import PrivateRoute from "./PrivateRoute";
 import Update_Add_Assets from "../Pages/AdminPages/Update/Update_Add_Assets";
 import Update_profile from "../Pages/NormalEmployee/Update_profile";
 import Payment from "../Pages/Payment/Payment";
-import CheckoutForm from "../Pages/Payment/CheckoutForm";
+import ErrorPage from "../Pages/Error/Errorpage";
+
+
+
  
   
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Layout></Layout>,
+      errorElement:<ErrorPage></ErrorPage>,
       children:[
         {
             path:'/',
@@ -88,12 +92,12 @@ import CheckoutForm from "../Pages/Payment/CheckoutForm";
         {
             path:'updateAsset/:id',
             element:<PrivateRoute><Update_Add_Assets></Update_Add_Assets></PrivateRoute>,
-            loader:({params})=>fetch(`http://localhost:5000/adminAddAssets/${params.id}`)
+            loader:({params})=>fetch(`https://asset-management-server-sigma.vercel.app/adminAddAssets/${params.id}`)
         },
         {
             path:'updateProfile/:id',
             element:<PrivateRoute><Update_profile></Update_profile></PrivateRoute>,
-            loader:({params})=>fetch(`http://localhost:5000/users/${params.id}`)
+            loader:({params})=>fetch(`https://asset-management-server-sigma.vercel.app/users/${params.id}`)
         },
         {
             path:'/allRequests',
@@ -107,7 +111,7 @@ import CheckoutForm from "../Pages/Payment/CheckoutForm";
         {
             path:'/myEmployeeList',
             element:<PrivateRoute><MyEmployeeList></MyEmployeeList></PrivateRoute>,
-            // loader:({params})=>fetch(`http://localhost:5000/admin/users/list/${params.email}`)
+            // loader:({params})=>fetch(`https://asset-management-server-sigma.vercel.app/admin/users/list/${params.email}`)
         },
         {
             path:'/payment',
