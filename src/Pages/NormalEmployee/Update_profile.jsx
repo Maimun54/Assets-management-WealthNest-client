@@ -25,7 +25,7 @@ const Update_profile = () => {
 
            }
            console.log('update data user',updateProfile)
-           fetch(`http://localhost:5000/users/${userInfo[0]?._id}`,{
+           fetch(`http://localhost:5000/users/${userInfo?._id}`,{
             method:'PUT',
             headers:{
                 'Content-type':'application/json'
@@ -68,28 +68,28 @@ const Update_profile = () => {
           <label className="label">
             <span className="label-text">Name</span>
           </label>
-          <input defaultValue={userInfo[0]?.name} type="text" {...register("name",{required:true})} name="name" placeholder="name" className="input input-bordered"  />
+          <input defaultValue={userInfo?.name} type="text" {...register("name",{required:true})} name="name" placeholder="name" className="input input-bordered"  />
           {errors.name && <span className="text-red-600">This field is required</span>}
         </div>
         <div className="form-control">
           <label className="label">
          <span className="label-text">Profile</span>
           </label>
-          <input defaultValue={userInfo[0]?.photo} type="text" {...register("photo",{required:true})}  placeholder="photo  url" className="input input-bordered"  />
+          <input defaultValue={userInfo?.photo} type="text" {...register("photo",{required:true})}  placeholder="photo  url" className="input input-bordered"  />
           {errors.photo && <span className="text-red-600">Tomar Picture dow mama</span>}
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Birthday</span>
           </label>
-          <input defaultValue={userInfo[0]?.Birthday} type="date" {...register("Birthday",{required:true})}  placeholder="Birthday" className="input input-bordered"  />
+          <input defaultValue={userInfo?.Birthday} type="date" {...register("Birthday",{required:true})}  placeholder="Birthday" className="input input-bordered"  />
           {errors.Birthday && <span className="text-red-600">Select your Date of birth</span>}
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input readOnly  defaultValue={userInfo[0]?.email} type="email" {...register("email")} name="email" placeholder="email" className="input input-bordered "/>
+          <input readOnly  defaultValue={userInfo?.email} type="email" {...register("email")} name="email" placeholder="email" className="input input-bordered "/>
           {errors.email && <span className="text-red-600">This field is required</span>}
         </div>
 

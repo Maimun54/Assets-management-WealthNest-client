@@ -16,25 +16,7 @@ const All_Requests = () => {
 
      },[axiosPublic])
 
-     const handleDelete = (id) => {
-        console.log(id);
-      
-        axiosPublic.delete(`/ECustomRequest/${id}`, {
-          method: "DELETE",
-          headers: {
-            'Content-Type': 'application/json', 
-          },
-        })
-        .then(response => {
-          console.log('Deleted successfully:', response);
-          const remaining =customData.filter(item=>item._id !==id)
-          setCustomData(remaining)
     
-        })
-        .catch(error => {
-          console.error(error);
-        });
-      };
     console.log('custom data loaded',customData)
 
  
@@ -50,6 +32,25 @@ const All_Requests = () => {
         setCustomData(prevData => {
           return prevData.map(item =>
             item._id === id ? { ...item, status: "Approved" } : item
+          );
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+  const handleReject = (id) => {
+    // Update the status to "Reject" in the database
+    axiosPublic.patch(`/EAssetRequest/${id}`, {
+      status: "Reject",
+    })
+      .then(response => {
+        console.log(' successfully:', response);
+
+        // Update the status in the local state
+        setCustomData(prevData => {
+          return prevData.map(item =>
+            item._id === id ? { ...item, status: "Reject" } : item
           );
         });
       })
@@ -86,7 +87,7 @@ const All_Requests = () => {
         <td>{asset.email}</td>
         <td>{asset.name}</td>
         <td>{asset.data}</td>
-        <td>{asset.Additional_information}</td>
+        <td>{asset.note}</td>
         <td>{asset.status}</td>
         
         <td>
@@ -94,7 +95,7 @@ const All_Requests = () => {
           
            <button onClick={()=>handleActive(asset._id)} className="btn btn-outline">Approve</button>
 
-            <button onClick={()=>handleDelete(asset._id)} className="btn btn-outline">Reject</button>
+            <button onClick={()=>handleReject (asset._id)} className="btn btn-outline">Reject</button>
            </div>
         
         </td>
@@ -116,3 +117,22 @@ export default All_Requests;
 
 
 
+// const handleDelete = (id) => {
+//   console.log(id);
+
+//   axiosPublic.delete(`/ECustomRequests/${id}`, {
+//     method: "DELETE",
+//     headers: {
+//       'Content-Type': 'application/json', 
+//     },
+//   })
+//   .then(response => {
+//     console.log('Deleted successfully:', response);
+//     const remaining =customData.filter(item=>item._id !==id)
+//     setCustomData(remaining)
+
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
+// };

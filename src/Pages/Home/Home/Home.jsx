@@ -6,31 +6,33 @@ import Footer from "../../Shared/Footer/Footer";
 import About from "../About/About";
 import Banner from "../Banner/Banner";
 import Packages from "../Packages/Packages";
-import axios from "axios";
+
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 
 const Home = () => {
     const {user}=useAuth()
-    const [userData,setUserData]=useState([])
+    const [userData,setUserData]=useState()
+    const axiosPublic=useAxiosPublic()
     console.log(userData)
-  useEffect(()=>{
-       axios.get(`http://localhost:5000/user/${user?.email}`)
+   useEffect(()=>{
+    axiosPublic.get(`/user/${user?.email}`)
        .then(res=>{
         
         setUserData(res.data)
        })
     
-  },[user?.email])
+  },[axiosPublic,user?.email])
     return (
         <div>
            
            {
-  userData[0]?.role === 'employee' ? (
+  userData?.role === 'employee' ? (
     // Employee routes go here
     <>
       <h2>This employee home page</h2>
     </>
-  ) : userData[0]?.role === 'admin' ? (
+  ) : userData?.role === 'admin' ? (
     // Admin routes go here
     <>
       <h2>this Admin home page</h2>

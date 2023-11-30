@@ -11,6 +11,11 @@ import SocialLogin from "../../Components/SocialLogin";
 const JoinAdmin = () => {
     const {createUser,updateUserProfile}=useContext(AuthContext)
     const axiosPublic =useAxiosPublic()
+    const allPackage = [
+      { price: 5, details: "5 members for $5", type: "Basic" },
+      { price: 10, details: "10 members for $8", type: "Premium" },
+      { price: 20, details: "20 members for $10", type: "Professional" },
+    ];
     const {
         register,handleSubmit,reset,formState: { errors },} = useForm()
         const role ='admin'
@@ -29,16 +34,17 @@ const JoinAdmin = () => {
                   photo:data.photo,
                   Birthday:data.Birthday,
                   Company_name:data.Company_name,
-                  category:data.category,
-                  
-                  role:role
+                  // category:data.category,
+                  selectedPackage: allPackage[data.category],
+                  role:role,
+                  package:null
                  }
                  axiosPublic.post('/users',userInfo,role)
                  .then(res=>{
                   if(res.data.insertedId){
                     console.log('user added a database')
                     reset();
-                      navigate('/')
+                      navigate('/payment')
                   }
                  })
                   // console.log('user profile updated')
@@ -96,9 +102,9 @@ const JoinAdmin = () => {
   </label>
   <select {...register('category',{required:true})} className="select select-bordered w-full ">
   <option disabled selected>Select your package </option>
-  <option value="5 Members for $5">5 Members for $5</option>
-  <option value="10 Members for $8">10 Members for $8</option>
-  <option value="20 Members for $15">20 Members for $15</option>
+  <option value="0">5 Members for $5</option>
+  <option value="1">10 Members for $8</option>
+  <option value="2">20 Members for $15</option>
   </select>
 </div>
         <div className="form-control">

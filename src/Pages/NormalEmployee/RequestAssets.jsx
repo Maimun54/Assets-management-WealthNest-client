@@ -1,17 +1,19 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const RequestAssets = () => {
 
   const [assetsList,setAssetsList]=useState();
+  const [note,setNote]=useState()
+  const axiosPublic=useAxiosPublic()
   useEffect(()=>{
-    axios.get('http://localhost:5000/adminAddAssets')
+    axiosPublic.get('/adminAddAssets')
     .then(res=>{
       setAssetsList(res.data)
     })
-  },[])
+  },[axiosPublic])
   const {user}=useAuth()
   const handleRequest =(asset)=>{
     console.log()
@@ -23,10 +25,12 @@ const RequestAssets = () => {
              Asset_Type:asset.Product_Type,
              email:user?.email,
              name:user?.displayName,
-             status:'pending'
+             status:'pending',
+             note:note
+            
         }
 
-    axios.post('http://localhost:5000/EAssetRequest',RequestAssets)
+        axiosPublic.post('/EAssetRequest',RequestAssets)
     .then(res=>{
       console.log(res.data)
     })
@@ -59,13 +63,50 @@ const RequestAssets = () => {
       <td>{asset.Product_Type}</td>
       <td>{asset.Product_Quantity > 0 ? "Available" : "Out of stock"}</td>
     
-      
       <td>
-         <div className="flex gap-5">  
-      <button onClick={()=>handleRequest(asset)} disabled={asset.Product_Quantity <= 0} className="btn btn-outline">Request</button>    
-         </div>
-      
-      </td>
+      <button
+             className="btn"
+           onClick={() =>
+ document.getElementById("my_modal_1").showModal()
+                    }
+                  >
+                    Request Asset
+                  </button>
+                  <dialog id="my_modal_1" className="modal">
+                    <div className="modal-box">
+                      <h3 className="font-bold text-lg">Additional Notes</h3>
+
+                      <textarea
+                        name="note"
+                        type="note"
+                        className="textarea textarea-primary"
+                        placeholder="Additional Notes"
+                        value={note}
+                        onChange={(e) => setNote(e.target.value)}
+                      ></textarea>
+                      <div className="modal-action">
+                        <form method="dialog">
+                          <button
+                            className="btn btn-sm bg-green-500 text-black"
+                            onClick={() =>
+                              document.getElementById("my_modal_1").close()
+                            }
+                          >
+                            Close
+                          </button>
+                          <button
+                          disabled={asset.Product_Quantity <= 0}
+                            onClick={() => handleRequest(asset)}
+                            className="btn btn-sm btn-primary ml-4"
+                          >
+                            Submit Request
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </dialog>
+                </td>
+     
       
 
     </tr>)
@@ -81,3 +122,4 @@ const RequestAssets = () => {
 };
 
 export default RequestAssets;
+

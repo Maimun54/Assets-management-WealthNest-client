@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const Packages = () => {
@@ -7,14 +8,16 @@ const Packages = () => {
                 <h2 className="text-4xl font-bold text-center py-5">Our Packages</h2>
                 <p className="text-2xl text-center"> Discover the right fit for your  goals with our three comprehensive packages</p>
             </div>
-        <div className="flex">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2">
             <div>
-      <div  className=" card card-compact  m-5 bg-base-100 shadow-xl">
+     <Link to="/payment">
+     <div  className=" card card-compact  m-5 bg-base-100 shadow-xl">
       <figure><img className="w-[500px] h-[300px]" src="https://i.ibb.co/1T4sfxK/pexels-fauxels-3184295.jpg"alt="brad car" /></figure>
       <div className="card-body">
       <h2 className="card-title text-center">Maximum 5 employees $5</h2>
       </div>
       </div>
+     </Link>
      
         </div>
             <div>

@@ -23,6 +23,8 @@ import All_Requests from "../Pages/AdminPages/All_Requests";
 import PrivateRoute from "./PrivateRoute";
 import Update_Add_Assets from "../Pages/AdminPages/Update/Update_Add_Assets";
 import Update_profile from "../Pages/NormalEmployee/Update_profile";
+import Payment from "../Pages/Payment/Payment";
+import CheckoutForm from "../Pages/Payment/CheckoutForm";
  
   
   const router = createBrowserRouter([
@@ -107,6 +109,11 @@ import Update_profile from "../Pages/NormalEmployee/Update_profile";
             element:<PrivateRoute><MyEmployeeList></MyEmployeeList></PrivateRoute>,
             // loader:({params})=>fetch(`http://localhost:5000/admin/users/list/${params.email}`)
         },
+        {
+            path:'/payment',
+            element:<PrivateRoute><Payment></Payment></PrivateRoute>
+           },
+        
         
       ]
     },
