@@ -6,16 +6,20 @@
 
 <h2>Website Live Link :https://asset-management-aec80.web.app/</h2>
 
-<h2>Top 5  Awesome features this website</h2>
+<h2> Awesome features this website</h2>
+<p>WealthNest is a full-stack Assets-management-s service provider web app.</p> 
+ 
+1. **User Authentication**: Seamlessly create accounts and log in to unlock personalized features tailored to individual users.
 
-  <p>WealthNest is a full-stack Assets-management-s service provider web app.</p>  
-<li>Employee Register for work</li>
-<li>Company Register for hire employee</li>
-<li>Company added employee for his selected pagakes</li>
-<li>Admin can removed his employee for his team</li>
-<li>Employee see his team member and company details</li>
-<li>Employee will send request for assets</li>
-<li>Admin will approved or rejected employee  assets request</li>
+2. **Responsive Design**: Enjoy a consistent and user-friendly experience on any device – be it mobile, tablet, or desktop – thanks to our responsive web application design.
+
+3. **Social Login Integration**: Simplify access with the option to log in using popular social media accounts like Google, Facebook, or GitHub, providing a variety of authentication choices.
+
+4. **Custom Request Management**: Empower employees with the ability to make personalized asset requests. Easily specify details such as asset name, price, type, and more. A user-friendly interface allows for efficient tracking and management of custom requests.
+
+5. **Team Collaboration and Management**: Take control with the "My Employee List" page, where HR/Admins can effortlessly manage team members. Actions such as adding or removing employees, along with displaying key information like member type, streamline team collaboration.
+
+6. **Payment Integration**: Elevate your user experience with a secure payment page. HR/Admin users can conveniently select and purchase subscription packages, expanding member limits. Our integration with Stripe ensures not only a seamless payment process but also the highest level of security for transactions.
 
 <h2>Front-end Technology</h2>
 <li>Html</li>
@@ -24,6 +28,7 @@
 <li>JavaScrip(Es6)</li>
 <li>React</li>
 <li>Firebase Authentication</li>
+<li>Strip</li>
 
 <h2>Back-end Technology</h2>
 <li>Node js</li>
