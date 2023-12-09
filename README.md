@@ -2,12 +2,14 @@
 
 <h2>Top 5  Awesome features this website</h2>
 
-    
-<li>Easy to added your blog</li>
-<li>Easily user can update his blog post</li>
-<li>Visitor can be added wishlist his favorite blog</li>
-<li>Visitor subscribe to blog for future update</li>
-<li>A to Z guide for child</li>
+  <p>WealthNest is a full-stack Assets-management-s service provider web app.</p>  
+<li>Employee Register for work</li>
+<li>Company Register for hire employee</li>
+<li>Company added employee for his selected pagakes</li>
+<li>Admin can removed his employee for his team</li>
+<li>Employee see his team member and company details</li>
+<li>Employee will send request for assets</li>
+<li>Admin will approved or rejected employee  assets request</li>
 
 <h2>Front-end Technology</h2>
 <li>Html</li>
