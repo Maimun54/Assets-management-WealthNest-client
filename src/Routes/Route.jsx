@@ -54,19 +54,19 @@ import ErrorPage from "../Pages/Error/Errorpage";
         },
         {
             path:'/myAssets',
-            element:<MyAssets></MyAssets>
+            element:<PrivateRoute><MyAssets></MyAssets></PrivateRoute>
         },
         {
             path:'/myTeam',
-            element:<MyTeam></MyTeam>
+            element:<PrivateRoute></PrivateRoute>
         },
         {
             path:'/customRequest',
-            element:<CustomRequest></CustomRequest>
+            element:<PrivateRoute><CustomRequest></CustomRequest></PrivateRoute>
         },
         {
             path:'/requestAssets',
-            element:<RequestAssets></RequestAssets>
+            element:<PrivateRoute><RequestAssets></RequestAssets></PrivateRoute>
         },
         {
             path:'/profile',
